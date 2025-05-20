@@ -1,0 +1,805 @@
+{
+	"info": {
+		"_postman_id": "3519da48-582e-4da9-b138-d03ee1902f58",
+		"name": "Mi embarazo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36698593",
+		"_collection_link": "https://blue-firefly-289406.postman.co/workspace/Embarazados~11dbe992-ddbb-43e9-a0a0-304d13fc0b7b/collection/37385387-3519da48-582e-4da9-b138-d03ee1902f58?action=share&source=collection_link&creator=36698593"
+	},
+	"item": [
+		{
+			"name": "Patients",
+			"item": [
+				{
+					"name": "Get all patients",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJobmVncm9uQGRlYWxlcmdlZWsuY29tIiwiZXhwIjoxNzYzNDA0NDk4fQ.ANIc8DWg1fxzm3p_I-2cpImfAeFynWkPfxWhA5TJCEU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}patients",
+							"host": [
+								"{{base_url}}patients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create patient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJobmVncm9uQGRlYWxlcmdlZWsuY29tIiwiZXhwIjoxNzYzNDA0NDk4fQ.ANIc8DWg1fxzm3p_I-2cpImfAeFynWkPfxWhA5TJCEU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"record\": \"2024-001\",\n    \"personalData\": {\n        \"name\": \"John Doe\",\n        \"gender\": \"Male\",\n        \"phone\": \"+1-555-0123\",\n        \"age\": 30,\n        \"birthDate\": \"1994-06-15\",\n        \"email\": \"johndoe@example.com\",\n        \"password\": \"securePassword123\",\n        \"curp\": \"JODD940615HMCLRN08\",\n        \"maritalStatus\": \"Single\",\n        \"occupation\": \"Software Engineer\",\n        \"address\": {\n            \"street\": \"123 Main St\",\n            \"city\": \"Somewhere\",\n            \"state\": \"CA\",\n            \"zipCode\": \"90210\",\n            \"country\": \"USA\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}patients",
+							"host": [
+								"{{base_url}}patients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get patient by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ2Z29uemFsZXpAY29ycmVvLmNvbSIsImV4cCI6MTc2NDcxNDY3OH0.xXHcyVZTpR4E2PCb83HvqXPBEDwyRk7RkA5wpP0VCdo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}patients/674f85ccb1cd9d2e8c8d3ad0",
+							"host": [
+								"{{base_url}}patients"
+							],
+							"path": [
+								"674f85ccb1cd9d2e8c8d3ad0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit patient info",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"record\": \"2025-001\",\n    \"personalData\": {\n        \"name\": \"John Doe2\",\n        \"gender\": \"Male\",\n        \"phone\": \"+1-555-0123\",\n        \"age\": 30,\n        \"birthDate\": \"1994-06-15\",\n        \"email\": \"johndoe@example.com\",\n        \"password\": \"securePassword123\",\n        \"curp\": \"JODD940615HMCLRN08\",\n        \"maritalStatus\": \"Single\",\n        \"occupation\": \"Software Engineer\",\n        \"address\": {\n            \"street\": \"123 Main St2\",\n            \"city\": \"Somewhere\",\n            \"state\": \"CA\",\n            \"zipCode\": \"90210\",\n            \"country\": \"USA\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}patients/6722e72db1deb9e76c894b8f",
+							"host": [
+								"{{base_url}}patients"
+							],
+							"path": [
+								"6722e72db1deb9e76c894b8f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete patients",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}patients/6722e72db1deb9e76c894b8f",
+							"host": [
+								"{{base_url}}patients"
+							],
+							"path": [
+								"6722e72db1deb9e76c894b8f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Patient By Doctor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ2Z29uemFsZXpAY29ycmVvLmNvbSIsImV4cCI6MTc2NDM3NDYyN30.470Qvit66EdaU2bDFBpQOJn04y1wpul9w1I9VX2IA-Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}patients/doctor",
+							"host": [
+								"{{base_url}}patients"
+							],
+							"path": [
+								"doctor"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Super Usuario\",\n    \"email\": \"admin@admin.com\",\n    \"password\": \"admin1234\",\n    \"role\": \"admin\",\n    \"gender\": \"female\",\n    \"major\": \"Specialty\",\n    \"office\": \"Office Name\",\n    \"phone\": \"1920837476\",\n    \"professional_license\": \"1234567890\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}signup",
+							"host": [
+								"{{base_url}}signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "hnegron@dealergeek.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "secreto1234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}login",
+							"host": [
+								"{{base_url}}login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Doctors",
+			"item": [
+				{
+					"name": "Get all doctors",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJsZW5pbkBsZW5pbi5jb20iLCJleHAiOjE3NjQzNjQzNzd9.Ctfjrtc2KdoFCqTzo-A3aHZeApn7f8wv5d9yGfr4-EY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}doctors",
+							"host": [
+								"{{base_url}}doctors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create doctor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJobmVncm9uQGRlYWxlcmdlZWsuY29tIiwiZXhwIjoxNzYzNTcxMjEzfQ.pKKrjAjmFi9IwFM4wnE9ZO5CLBvpmRt-QpPhZo_MCOE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Doctor Name\",\n    \"email\": \"VJrE2@example.com\",\n    \"phone\": \"1234567890\",\n    \"gender\": \"male\",\n    \"password\": \"password\",\n    \"office\": \"Office Name\",\n    \"license\": \"1234567890\",\n    \"specialization\": \"specialization\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}doctors",
+							"host": [
+								"{{base_url}}doctors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get doctors by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJsZW5pbkBsZW5pbi5jb20iLCJleHAiOjE3NjQzNjQzNzd9.Ctfjrtc2KdoFCqTzo-A3aHZeApn7f8wv5d9yGfr4-EY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}doctors/by_id",
+							"host": [
+								"{{base_url}}doctors"
+							],
+							"path": [
+								"by_id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit doctors info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJobmVncm9uQGRlYWxlcmdlZWsuY29tIiwiZXhwIjoxNzYzNDA3NjE0fQ.ABzVoS2SlWC2rTaZyby4yGXZgUZtnUm3TUSgAioc2KY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"gender\": \"male1\",\n  \"major\": \"Specialty1\",\n  \"name\": \"Jamart1\",\n  \"office\": \"Office Name1\",\n  \"phone\": \"19208374761\",\n  \"license\": \"12345678901\",\n  \"specialization\": \"specialization1\",\n  \"role\": \"doctor\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}doctors/67460503e19d28f60d72c4c3",
+							"host": [
+								"{{base_url}}doctors"
+							],
+							"path": [
+								"67460503e19d28f60d72c4c3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete doctors",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJobmVncm9uQGRlYWxlcmdlZWsuY29tIiwiZXhwIjoxNzYzNDA3NjE0fQ.ABzVoS2SlWC2rTaZyby4yGXZgUZtnUm3TUSgAioc2KY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}doctors/6747302d7e5e3d645ce219f7",
+							"host": [
+								"{{base_url}}doctors"
+							],
+							"path": [
+								"6747302d7e5e3d645ce219f7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Doctor Schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJobmVncm9uQGRlYWxlcmdlZWsuY29tIiwiZXhwIjoxNzYzNTcxMjEzfQ.pKKrjAjmFi9IwFM4wnE9ZO5CLBvpmRt-QpPhZo_MCOE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"date\": \"2024-12-11\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}doctors/get_schedule/673e14067c3287ff191e3fc8",
+							"host": [
+								"{{base_url}}doctors"
+							],
+							"path": [
+								"get_schedule",
+								"673e14067c3287ff191e3fc8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Appointments",
+			"item": [
+				{
+					"name": "Get all appoinments",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJsZW5pbkBsZW5pbi5jb20iLCJleHAiOjE3NjQzNjQzNzd9.Ctfjrtc2KdoFCqTzo-A3aHZeApn7f8wv5d9yGfr4-EY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}appointments",
+							"host": [
+								"{{base_url}}appointments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create appointment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJobmVncm9uQGRlYWxlcmdlZWsuY29tIiwiZXhwIjoxNzYzNDA3NjE0fQ.ABzVoS2SlWC2rTaZyby4yGXZgUZtnUm3TUSgAioc2KY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bloodPressure\": \"\",\n    \"date\": \"2024-11-28\",\n    \"date_type\": \"Nueva Cita\",\n    \"doctor\": \"674625205906948ba552ab57\",\n    \"fetalHeartRate\": \"\",\n    \"fetalStatus\": \"\",\n    \"file\": null,\n    \"observations\": \"\",\n    \"patient\": \"674696da871bdb5cfa4b1fbe\",\n    \"prescription\": \"\",\n    \"status\": \"Confirmada\",\n    \"time\": \"3:35\",\n    \"weight\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}appointments",
+							"host": [
+								"{{base_url}}appointments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get appointments by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJobmVncm9uQGRlYWxlcmdlZWsuY29tIiwiZXhwIjoxNzYzNDA3NjE0fQ.ABzVoS2SlWC2rTaZyby4yGXZgUZtnUm3TUSgAioc2KY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}appointments/673bba4d67ec4b6cfd47ad6d",
+							"host": [
+								"{{base_url}}appointments"
+							],
+							"path": [
+								"673bba4d67ec4b6cfd47ad6d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit appointments info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJobmVncm9uQGRlYWxlcmdlZWsuY29tIiwiZXhwIjoxNzYzNDA3NjE0fQ.ABzVoS2SlWC2rTaZyby4yGXZgUZtnUm3TUSgAioc2KY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"patient\": \"674a098aec5000563dff9218\",\n   \"patient_name\":\"Kenia Guadalupe Flores Osuna\",\n   \"doctor\": \"67462520590b948ba552ab57\",\n   \"date_type\": \"Seguimiento\",\n   \"record\": \"EXP-162807\",\n   \"status\": \"Confirmada\",\n   \"time\":\"12:30\",\n   \"date\":\"2024-12-25T00:00:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}appointments/674a098aec5000563dff9218",
+							"host": [
+								"{{base_url}}appointments"
+							],
+							"path": [
+								"674a098aec5000563dff9218"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Appointment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJobmVncm9uQGRlYWxlcmdlZWsuY29tIiwiZXhwIjoxNzYzNDA3NjE0fQ.ABzVoS2SlWC2rTaZyby4yGXZgUZtnUm3TUSgAioc2KY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}appointments/673e350a3e7d89a474aee32c",
+							"host": [
+								"{{base_url}}appointments"
+							],
+							"path": [
+								"673e350a3e7d89a474aee32c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Appointment By Doctor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ2Z29uemFsZXpAY29ycmVvLmNvbSIsImV4cCI6MTc2NDM3NDYyN30.470Qvit66EdaU2bDFBpQOJn04y1wpul9w1I9VX2IA-Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}appointments/doctors",
+							"host": [
+								"{{base_url}}appointments"
+							],
+							"path": [
+								"doctors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Appointment By Patient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJsZW5pbkBsZW5pbi5jb20iLCJleHAiOjE3NjQzNjQzNzd9.Ctfjrtc2KdoFCqTzo-A3aHZeApn7f8wv5d9yGfr4-EY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}appointments/patients/674f85ccb1cd9d2e8c8d3ad0",
+							"host": [
+								"{{base_url}}appointments"
+							],
+							"path": [
+								"patients",
+								"674f85ccb1cd9d2e8c8d3ad0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJobmVncm9uQGRlYWxlcmdlZWsuY29tIiwiZXhwIjoxNzY0MTA5MTg0fQ.-TuBDpaL2Y3XmAIfUvmnEBVRvYtRsYnzPC_YN9IZ3AM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}users/by_id",
+							"host": [
+								"{{base_url}}users"
+							],
+							"path": [
+								"by_id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJobmVncm9uQGRlYWxlcmdlZWsuY29tIiwiZXhwIjoxNzY0MTA5MTg0fQ.-TuBDpaL2Y3XmAIfUvmnEBVRvYtRsYnzPC_YN9IZ3AM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"specialization\": \"specialization1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}users/67462520590b948ba552ab57",
+							"host": [
+								"{{base_url}}users"
+							],
+							"path": [
+								"67462520590b948ba552ab57"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJobmVncm9uQGRlYWxlcmdlZWsuY29tIiwiZXhwIjoxNzY0MTA5MTg0fQ.-TuBDpaL2Y3XmAIfUvmnEBVRvYtRsYnzPC_YN9IZ3AM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}users",
+							"host": [
+								"{{base_url}}users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJobmVncm9uQGRlYWxlcmdlZWsuY29tIiwiZXhwIjoxNzY0MTA5MTg0fQ.-TuBDpaL2Y3XmAIfUvmnEBVRvYtRsYnzPC_YN9IZ3AM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}users/6748dfa4291482ee22af1a75",
+							"host": [
+								"{{base_url}}users"
+							],
+							"path": [
+								"6748dfa4291482ee22af1a75"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dashboard",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000/",
+			"type": "string"
+		}
+	]
+}
