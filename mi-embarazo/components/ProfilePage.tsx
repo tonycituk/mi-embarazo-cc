@@ -4,11 +4,13 @@ import React, { useEffect, useState } from "react";
 import Avatar from "./ui/Avatar";
 import Input from "./ui/Input";
 import { updateProfile, verifyPassword } from "@/src/services/perfilService";
+import { useSnackbar } from "notistack";
 
 export default function ProfilePage({ role }: { role: string }) {
   const [isEditing, setIsEditing] = useState(false); // Toggle editing
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
   const [isVerifying, setIsVerifying] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
 
   // Make sure all initial values are defined
   const [formData, setFormData] = useState({
@@ -105,10 +107,14 @@ export default function ProfilePage({ role }: { role: string }) {
     try {
       await updateProfile(formData as any);
       setIsEditing(false); // Exit edit mode
-      alert("Cambios guardados con éxito.");
+      enqueueSnackbar("Perfil actualizado correctamente", {
+        variant: "success",
+      });
     } catch (error) {
       console.error("Error saving profile data:", error);
-      alert("Error al guardar los cambios.");
+      enqueueSnackbar("Error al guardar los datos del perfil", {
+        variant: "error",
+      });
     }
 
     setIsVerifying(false);

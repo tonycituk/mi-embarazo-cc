@@ -69,35 +69,36 @@ export default function DoctorsTable({
             </TableRow>
           </TableBody>
         ) : (
-        <TableBody>
-          {doctors.map((doctor, index) => (
-            <TableRow key={index}>
-              <TableCell>{doctor.name}</TableCell>
-              <TableCell>{doctor.specialization}</TableCell>
-              <TableCell>{doctor.email}</TableCell>
-              <TableCell>{doctor.phone}</TableCell>
-              <TableCell>{doctor.gender}</TableCell>
-              <TableCell>{doctor.office}</TableCell>
-              <TableCell>{doctor.license}</TableCell>
-              <TableCell>
-                <div className="flex gap-4">
-                  <button
-                    className="bg-yellow-100 px-2 py-1 rounded text-yellow-800 hover:bg-yellow-600 hover:bg-opacity-25"
-                    onClick={() => onEditDoctor(doctor)}
-                  >
-                    <Edit />
-                  </button>
-                  <button
-                    className="bg-red-100 px-2 py-1 rounded text-red-800 hover:bg-red-600 hover:bg-opacity-25"
-                    onClick={() => onDeleteDoctor(doctor)}
-                  >
-                    <DeleteRounded />
-                  </button>
-                </div>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>)}
+          <TableBody>
+            {doctors.map((doctor, index) => (
+              <TableRow key={index}>
+                <TableCell>{doctor.name}</TableCell>
+                <TableCell>{doctor.specialization}</TableCell>
+                <TableCell>{doctor.email}</TableCell>
+                <TableCell>{doctor.phone}</TableCell>
+                <TableCell>{doctor.gender}</TableCell>
+                <TableCell>{doctor.office}</TableCell>
+                <TableCell>{doctor.license}</TableCell>
+                <TableCell>
+                  <div className="flex gap-4">
+                    <button
+                      className="bg-yellow-100 px-2 py-1 rounded text-yellow-800 hover:bg-yellow-600 hover:bg-opacity-25"
+                      onClick={() => onEditDoctor(doctor)}
+                    >
+                      <Edit />
+                    </button>
+                    <button
+                      className="bg-red-100 px-2 py-1 rounded text-red-800 hover:bg-red-600 hover:bg-opacity-25"
+                      onClick={() => onDeleteDoctor(doctor)}
+                    >
+                      <DeleteRounded />
+                    </button>
+                  </div>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        )}
       </Table>
     </TableContainer>
   );

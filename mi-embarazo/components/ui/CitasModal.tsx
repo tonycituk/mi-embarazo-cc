@@ -8,6 +8,7 @@ import {
   updateAppointmentDetails,
 } from "@/src/services/citasService";
 import { PatientModel } from "@/src/models/PatientModel";
+import { useSnackbar } from "notistack";
 
 const resetForm: AppointmentModel = new AppointmentModel(
   "",
@@ -42,6 +43,7 @@ export default function CitasModal({
   fetchData: () => void;
 }) {
   const [formData, setFormData] = useState<AppointmentModel>(resetForm);
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     if (appointment) {
@@ -84,17 +86,32 @@ export default function CitasModal({
 
   const saveNewAppointment = async (appointment: AppointmentModel) => {
     try {
-      await createAppointment(appointment);
+      const response = await createAppointment(appointment);
+      if (response)
+        enqueueSnackbar("Cita creada correctamente", {
+          variant: "success",
+        });
     } catch (error) {
       console.error("Error al realizar la solicitud POST:", error);
+      enqueueSnackbar("Error al crear la cita", {
+        variant: "error",
+      });
     }
   };
 
   const updateAppointment = async (appointment: AppointmentModel) => {
     try {
-      await updateAppointmentDetails(appointment);
+      const response = await updateAppointmentDetails(appointment);
+
+      if (response)
+        enqueueSnackbar("Cita actualizada correctamente", {
+          variant: "success",
+        });
     } catch (error) {
       console.error("Error al realizar la solicitud PUT:", error);
+      enqueueSnackbar("Error al actualizar la cita", {
+        variant: "error",
+      });
     }
   };
 

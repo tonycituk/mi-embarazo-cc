@@ -1,7 +1,7 @@
 export class DoctorModel {
     id: string;
     name: string;
-    specialization: string; // Cambiamos "speciality" a "specialization"
+    specialization: string;
     email: string;
     phone: string;
     gender: string;

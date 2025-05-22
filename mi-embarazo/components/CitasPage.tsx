@@ -13,6 +13,7 @@ import {
 import { AppointmentModel } from "@/src/models/AppointmentModel";
 import { getAllPatients } from "@/src/services/pacienteService";
 import { PatientModel } from "@/src/models/PatientModel";
+import { useSnackbar } from "notistack";
 
 export default function CitasPage({ role }: { role: "doctor" | "admin" }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,6 +27,7 @@ export default function CitasPage({ role }: { role: "doctor" | "admin" }) {
     []
   );
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const { enqueueSnackbar } = useSnackbar();
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -36,8 +38,18 @@ export default function CitasPage({ role }: { role: "doctor" | "admin" }) {
       ]);
       setAppointments(appointmentsData);
       setAvailablePatients(patientsData);
+
+      if (appointmentsData.length === 0) {
+        enqueueSnackbar("No hay citas disponibles", {
+          variant: "info",
+        });
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
+
+      enqueueSnackbar("Error fetching data", {
+        variant: "error",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -71,8 +83,16 @@ export default function CitasPage({ role }: { role: "doctor" | "admin" }) {
       setAppointments((prevAppointments) =>
         prevAppointments.filter((a) => a._id !== selectedAppointment!._id)
       );
+
+      enqueueSnackbar("Cita eliminada correctamente", {
+        variant: "success",
+      });
     } catch (error) {
       console.error("Error deleting appointment:", error);
+
+      enqueueSnackbar("Error deleting appointment", {
+        variant: "error",
+      });
     } finally {
       setIsLoading(false);
     }

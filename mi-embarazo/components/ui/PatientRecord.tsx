@@ -9,6 +9,7 @@ import { savePatientDetails } from "@/src/services/pacienteService";
 import { AppointmentDetailsModel } from "@/src/models/AppointmentModel";
 import { DateTime } from "luxon";
 import { updateAppointmentDetails } from "@/src/services/citasService";
+import { useSnackbar } from "notistack";
 
 export default function PatientRecord({
   patient,
@@ -47,6 +48,7 @@ export default function PatientRecord({
     useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
 
   const updateData = (data: PatientModel) => {
     setFormData((prevData) => ({
@@ -111,6 +113,10 @@ export default function PatientRecord({
               setIsPatientDataChanged(false);
             }
           );
+
+          enqueueSnackbar("Detalles del paciente guardados correctamente", {
+            variant: "success",
+          });
         }
 
         if (isAppointmentDataChanged) {
@@ -125,9 +131,17 @@ export default function PatientRecord({
               setIsAppointmentDataChanged(false);
             }
           );
+
+          enqueueSnackbar("Detalles de la cita guardados correctamente", {
+            variant: "success",
+          });
         }
       } catch (error) {
         console.error("Error saving patient details:", error);
+
+        enqueueSnackbar("Error al guardar los detalles del paciente", {
+          variant: "error",
+        });
       } finally {
         setIsLoading(false);
         setIsEditing(false);

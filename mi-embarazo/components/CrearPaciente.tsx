@@ -9,6 +9,7 @@ import { createPatient } from "@/src/services/pacienteService";
 import { PatientModel } from "@/src/models/PatientModel";
 import { DoctorModel } from "@/src/models/DoctorModel";
 import { fetchDoctors } from "@/src/services/adminDoctoresService";
+import { useSnackbar } from "notistack";
 
 export default function CrearPaciente() {
   const pathname = usePathname();
@@ -21,6 +22,7 @@ export default function CrearPaciente() {
 
   const [tab, setTab] = useState(0);
   const [formData, setFormData] = useState<PatientModel>(new PatientModel());
+  const { enqueueSnackbar } = useSnackbar();
 
   const fetchDoctorsAdmin = async () => {
     try {
@@ -74,8 +76,16 @@ export default function CrearPaciente() {
         router.push(`/${role}/pacientes`);
         setIsLoading(false);
       });
+
+      enqueueSnackbar("Paciente creado correctamente", {
+        variant: "success",
+      });
     } catch (error) {
       console.error(error);
+
+      enqueueSnackbar("Error al crear el paciente", {
+        variant: "error",
+      });
     }
   };
   //TODO: finish selecting doctor as admin

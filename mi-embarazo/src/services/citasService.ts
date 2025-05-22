@@ -89,7 +89,7 @@ export async function createAppointment(appointment: AppointmentDetailsModel) {
     if (!response.ok) {
       throw new Error("Error creating appointment");
     }
-
+    
     return await response.json();
   } catch (error) {
     console.error("Error al crear detalles de cita:", error);

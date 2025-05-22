@@ -15,6 +15,7 @@ import { LinearProgress } from "@mui/material";
 import { DoctorModel } from "@/src/models/DoctorModel";
 import { fetchDoctors } from "@/src/services/adminDoctoresService";
 import Input from "./ui/Input";
+import { useSnackbar } from "notistack";
 
 export default function PacientesPage({ role }: { role: string }) {
   const [patients, setPatients] = useState<PatientModel[]>([]);
@@ -23,6 +24,7 @@ export default function PacientesPage({ role }: { role: string }) {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
   const [isDeletingPatient, setIsDeletingPatient] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
 
   const fetchData = async () => {
     try {
@@ -67,8 +69,15 @@ export default function PacientesPage({ role }: { role: string }) {
       await deletePatient(patient).finally(() => {
         fetchData();
       });
+
+      enqueueSnackbar("Paciente eliminado correctamente", {
+        variant: "success",
+      });
     } catch (error) {
       console.error(error);
+      enqueueSnackbar("Error al eliminar el paciente", {
+        variant: "error",
+      });
     }
   };
 

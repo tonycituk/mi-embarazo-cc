@@ -19,6 +19,7 @@ export async function fetchDoctors(): Promise<DoctorModel[]> {
   }
 
   const data = await response.json();
+
   return data.map(
     (doctor: any) => // eslint-disable-line @typescript-eslint/no-explicit-any
       new DoctorModel(
@@ -63,9 +64,9 @@ export async function addDoctor(doctor: DoctorModel): Promise<DoctorModel> {
 }
 
 // Actualizar un doctor
-export async function updateDoctor(id: string, doctor: DoctorModel): Promise<DoctorModel> {
+export async function updateDoctor(doctor: DoctorModel): Promise<DoctorModel> {
   const token = localStorage.getItem("accessToken");
-  const response = await fetch(`${API_BASE_URL}/doctors/${id}`, {
+  const response = await fetch(`${API_BASE_URL}/doctors/${doctor.id}`, {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -80,7 +81,7 @@ export async function updateDoctor(id: string, doctor: DoctorModel): Promise<Doc
 
   const data = await response.json();
   return new DoctorModel(
-    data._id,
+    data._id || doctor.id,
     data.name,
     data.specialization,
     data.email,

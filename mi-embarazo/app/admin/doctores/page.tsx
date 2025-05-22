@@ -12,6 +12,7 @@ import {
   updateDoctor,
 } from "@/src/services/adminDoctoresService";
 import { DoctorModel } from "@/src/models/DoctorModel";
+import { useSnackbar } from "notistack";
 
 export default function DoctoresPage() {
   const [doctors, setDoctors] = useState<DoctorModel[]>([]);
@@ -24,12 +25,14 @@ export default function DoctoresPage() {
     null
   );
   const [doctor, setDoctor] = useState<DoctorModel | undefined>(undefined);
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     const loadDoctors = async () => {
       try {
         const data = await fetchDoctors();
         setDoctors(data);
+
         setFilteredDoctors(data);
       } catch (error) {
         console.error("Error fetching doctors:", error);
@@ -59,28 +62,40 @@ export default function DoctoresPage() {
   const handleSaveDoctor = async (newDoctor: DoctorModel) => {
     try {
       setLoading(true);
-      if (newDoctor.id) {
-        // Si el doctor ya existe, lo actualizamos 
-        const updatedDoctor = await updateDoctor(newDoctor.id, newDoctor);
+      if (doctor) {
+        // Si el doctor ya existe, lo actualizamos
+        const updatedDoctor = await updateDoctor(newDoctor);
         setDoctors((prevDoctors) =>
           prevDoctors.map((doc) =>
-            doc.id === newDoctor.id ? updatedDoctor : doc
+            doc.id === updatedDoctor.id ? updatedDoctor : doc
           )
         );
         setFilteredDoctors((prevFiltered) =>
           prevFiltered.map((doc) =>
-            doc.id === newDoctor.id ? updatedDoctor : doc
+            doc.id === updatedDoctor.id ? updatedDoctor : doc
           )
         );
+
+        enqueueSnackbar("Doctor actualizado correctamente", {
+          variant: "success",
+        });
       } else {
         // Si es un nuevo doctor, lo añadimos
         const createdDoctor = await addDoctor(newDoctor);
 
         setDoctors((prevDoctors) => [...prevDoctors, createdDoctor]); // Actualizamos la lista completa
         setFilteredDoctors((prevFiltered) => [...prevFiltered, createdDoctor]); // Actualizamos la lista filtrada
+
+        enqueueSnackbar("Doctor creado correctamente", {
+          variant: "success",
+        });
       }
     } catch (error) {
       console.error("Error guardando el doctor:", error);
+
+      enqueueSnackbar("Error al guardar el doctor", {
+        variant: "error",
+      });
     } finally {
       setIsDoctorsModalOpen(false); // Cerramos el modal
       setLoading(false);
@@ -105,8 +120,16 @@ export default function DoctoresPage() {
         setFilteredDoctors((prevFiltered) =>
           prevFiltered.filter((doc) => doc.id !== doctorToDelete.id)
         );
+
+        enqueueSnackbar("Doctor eliminado correctamente", {
+          variant: "success",
+        });
       } catch (error) {
         console.error("Error eliminando el doctor:", error);
+
+        enqueueSnackbar("Error al eliminar el doctor", {
+          variant: "error",
+        });
       } finally {
         setLoading(false);
         setIsDeleteModalOpen(false);
