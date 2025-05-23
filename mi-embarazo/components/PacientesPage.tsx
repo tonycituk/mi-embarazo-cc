@@ -49,6 +49,12 @@ export default function PacientesPage({ role }: { role: string }) {
       } else setDoctors(fetchedDoctors);
 
       setPatients(fetchedPatients);
+
+      if (fetchedPatients.length === 0) {
+        enqueueSnackbar("No hay pacientes disponibles", {
+          variant: "info",
+        });
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {

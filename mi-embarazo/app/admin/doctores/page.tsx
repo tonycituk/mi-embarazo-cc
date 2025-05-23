@@ -34,6 +34,12 @@ export default function DoctoresPage() {
         setDoctors(data);
 
         setFilteredDoctors(data);
+
+        if (data.length === 0) {
+          enqueueSnackbar("No hay doctores disponibles", {
+            variant: "info",
+          });
+        }
       } catch (error) {
         console.error("Error fetching doctors:", error);
       } finally {

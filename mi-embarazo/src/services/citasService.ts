@@ -70,7 +70,6 @@ export async function getAppointmentByDoctor(status?: string): Promise<Appointme
     // if(status) {
     //   return appointments.filter((appointment) => appointment.status === status);
     // }
-    console.log("Lista de citas:", appointments);
     return appointments;
   } catch (error) {
     console.error("Error al obtener citas:", error);

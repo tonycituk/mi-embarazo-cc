@@ -70,7 +70,6 @@ export default function DoctorDashboardPage() {
         DateTime.fromISO(appointment.date).toISODate() === date.toISODate()
     );
     setFilteredAppointments(todayAppointments);
-    console.log("Today's appointments -> ", todayAppointments);
   };
 
   useEffect(() => {
@@ -121,7 +120,6 @@ export default function DoctorDashboardPage() {
       (appointment) =>
         DateTime.fromISO(appointment.date).toISODate() === newDate.toISODate()
     );
-    console.log("Matching appointments -> ", matchingAppointments);
     setFilteredAppointments(matchingAppointments);
   };
 
