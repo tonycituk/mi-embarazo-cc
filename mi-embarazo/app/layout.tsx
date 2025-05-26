@@ -18,7 +18,7 @@ export default function RootLayout({
         <SnackbarProvider
           maxSnack={3}
           autoHideDuration={3000}
-          anchorOrigin={{ vertical: "top", horizontal: "right" }}
+          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
         >
           <AuthProvider>{children}</AuthProvider>
         </SnackbarProvider>
