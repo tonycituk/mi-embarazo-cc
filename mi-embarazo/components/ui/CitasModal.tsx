@@ -81,6 +81,7 @@ export default function CitasModal({
           patient_name: selectedPatient.personalData.name,
           record: selectedPatient.record,
           patient: selectedPatient._id,
+          doctor: selectedPatient.doctor,
         }));
       }
     } else {
