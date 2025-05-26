@@ -1,11 +1,19 @@
 from fastapi import APIRouter, Body, status, HTTPException, Depends
-
+from fastapi.responses import JSONResponse
+from bson import ObjectId
+from bson.json_util import dumps
+from fastapi import Response
+import json
 from models.pyObjectId import PyObjectId
 from services.patients_service import PatientsService
 from models.user_model import UserModel
 from models.patient import Patient
 from utils.login_required import login_required
 
+
+from fastapi.security import OAuth2PasswordBearer
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 patients_router = APIRouter(
     prefix="/patients",
     tags=["patients"],
@@ -27,6 +35,33 @@ def get_patients_by_doctor(credentials : UserModel = Depends(login_required)) ->
     patients: list[Patient] | None = PatientsService().get_patients_by_doctor(credentials.id)
 
     return patients
+
+@patients_router.get("/{patient_id}/download")
+async def download_record(
+    patient_id: str,
+    token: str = Depends(oauth2_scheme)
+):
+    # Usa el servicio en lugar de acceder directamente a la DB
+    record = PatientsService().get_patient(patient_id)
+
+    if not record:
+        return JSONResponse(
+            status_code=404,
+            content={"detail": "Expediente no encontrado"}
+        )
+
+    # dumps() de bson puede fallar si no es un dict plano con ObjectId y datetime
+    json_data = dumps(record, indent=2)
+
+    return Response(
+        content=json_data,
+        media_type="application/json",
+        headers={
+            "Content-Disposition": f"attachment; filename=expediente_{patient_id}.json"
+        }
+    )
+
+
 
 @patients_router.get("/{patient_id}")
 def get_patient(patient_id: str) -> Patient:
