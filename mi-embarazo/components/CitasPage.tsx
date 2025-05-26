@@ -15,6 +15,7 @@ import { getAllPatients } from "@/src/services/pacienteService";
 import { PatientModel } from "@/src/models/PatientModel";
 import { useSnackbar } from "notistack";
 import { useTranslation } from "react-i18next";
+import { useAuth } from "@/context/AuthContext";
 
 export default function CitasPage({ role }: { role: "doctor" | "admin" }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -30,6 +31,7 @@ export default function CitasPage({ role }: { role: "doctor" | "admin" }) {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
+  const { user } = useAuth();
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -38,8 +40,13 @@ export default function CitasPage({ role }: { role: "doctor" | "admin" }) {
         role == "admin" ? getAllAppointments() : getAppointmentByDoctor(),
         getAllPatients(),
       ]);
+      if (role === "doctor") {
+        const doctorsPatients = patientsData.filter(
+          (patient) => patient.doctor === user?._id
+        );
+        setAvailablePatients(doctorsPatients);
+      } else setAvailablePatients(patientsData);
       setAppointments(appointmentsData);
-      setAvailablePatients(patientsData);
 
       if (appointmentsData.length === 0) {
         enqueueSnackbar(t("appointments.empty-appointments-message.snackbar"), {
