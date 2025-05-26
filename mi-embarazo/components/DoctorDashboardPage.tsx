@@ -17,6 +17,7 @@ import {
 } from "@/src/models/AppointmentModel";
 import { DateTime } from "luxon";
 import DateNavigator from "@/components/DateNavigator";
+import { t } from "i18next";
 
 export default function DoctorDashboardPage() {
   const [userInfo, setUserInfo] = useState({
@@ -41,8 +42,8 @@ export default function DoctorDashboardPage() {
       null!,
       DateTime.now().toISODate(),
       DateTime.now().toFormat("HH:mm"),
-      "Nuevo paciente",
-      "Confirmada",
+      t("appointments.appointment-type.new"),
+      t("appointments.status.confirmed"),
       0,
       "",
       "",
@@ -84,7 +85,7 @@ export default function DoctorDashboardPage() {
     if (currentPatient) {
       setIsSavingDetails(true);
       setSnackbarOpen(true);
-      setSnackbarMessage("Finalizando cita...");
+      setSnackbarMessage(t("doctors.ending-appointment-message"));
       const parsedDate = DateTime.fromISO(currentPatient.date).toISODate();
       const formDataParsed = {
         ...formData,
@@ -96,7 +97,9 @@ export default function DoctorDashboardPage() {
         setIsSavingDetails(false);
         localStorage.removeItem("currentPatient");
         localStorage.removeItem("currentPatientDetails");
-        setSnackbarMessage("Cita finalizada correctamente");
+        setSnackbarMessage(
+          t("doctors.end-appointment-success-message.snackbar")
+        );
         setSnackbarOpen(true);
       });
     }
@@ -125,9 +128,11 @@ export default function DoctorDashboardPage() {
 
   return (
     <main>
-      <h1 className="text-3xl font-bold">Bienvenido/a {userInfo.name},</h1>
+      <h1 className="text-3xl font-bold">
+        {t("doctors.dashboard-welcome-title")} {userInfo.name},
+      </h1>
       <p className="text-gray-400 font-light pt-1">
-        Revisa la información general sobre el paciente y las próximas citas.
+        {t("doctors.dashboard-welcome-subtitle")}
       </p>
       <article>
         <section className="flex space-x-8 pt-8">
@@ -135,7 +140,7 @@ export default function DoctorDashboardPage() {
             <Skeleton className="flex-1" height={"24rem"} />
           ) : (
             <Card
-              title="Citas programadas"
+              title={t("doctors.dashboard-appointments-title")}
               action={
                 <DateNavigator
                   isDisabled={isLoading}
@@ -163,7 +168,7 @@ export default function DoctorDashboardPage() {
                     />
                   ))
                 ) : (
-                  <p>No hay citas programadas</p>
+                  <p>{t("doctors.dashboard-appointments-empty")}</p>
                 )}
               </div>
             </Card>
@@ -175,16 +180,21 @@ export default function DoctorDashboardPage() {
               className="flex-1"
               title={
                 currentPatient
-                  ? `Notas de ${currentPatient?.patient_name}`
-                  : "Notas"
+                  ? `${t("doctors.dashboard-patient-notes")} ${
+                      currentPatient?.patient_name
+                    }`
+                  : t("doctors.dashboard-patient-notes-empty")
               }
               action={
                 currentPatient && (
                   <div className="space-x-2">
-                    <Tooltip title="Ver expediente" placement="top-start">
+                    <Tooltip
+                      title={t("doctors.dashboard-patient-record-link")}
+                      placement="top-start"
+                    >
                       <button
                         className="border border-[--primary-color] text-[--primary-color] rounded-md py-1 px-2 hover:bg-[#f7d0f4]"
-                        aria-label="Ver expediente"
+                        aria-label={t("doctors.dashboard-patient-record-link")}
                         onClick={() =>
                           window.open(
                             `/doctor/pacientes/${currentPatient?.patient}`,

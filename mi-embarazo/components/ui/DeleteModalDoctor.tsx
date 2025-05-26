@@ -1,4 +1,5 @@
 import { Modal } from "@mui/material";
+import { t } from "i18next";
 
 export default function DeleteModalDoctor({
   isOpen,
@@ -24,13 +25,13 @@ export default function DeleteModalDoctor({
               className="bg-red-600 text-white rounded-md px-4 py-2 hover:bg-red-700"
               onClick={onConfirm} // Siempre llamamos a la función de confirmación
             >
-              Eliminar
+              {t("btn-delete")}
             </button>
             <button
               className="bg-gray-200 text-gray-700 rounded-md px-4 py-2 hover:bg-gray-300"
               onClick={onClose} // Cerramos el modal
             >
-              Cancelar
+              {t("btn-cancel")}
             </button>
           </div>
         </div>

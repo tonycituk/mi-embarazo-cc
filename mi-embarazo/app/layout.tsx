@@ -1,9 +1,6 @@
-"use client";
-
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { AuthProvider } from "../context/AuthContext";
-import { SnackbarProvider } from "notistack";
+import ClientProviders from "@/components/ClientProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,13 +12,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-slate-50`}>
-        <SnackbarProvider
-          maxSnack={3}
-          autoHideDuration={3000}
-          anchorOrigin={{ vertical: "top", horizontal: "right" }}
-        >
-          <AuthProvider>{children}</AuthProvider>
-        </SnackbarProvider>
+        <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
   );

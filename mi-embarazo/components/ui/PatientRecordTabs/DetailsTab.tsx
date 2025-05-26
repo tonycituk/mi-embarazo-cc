@@ -2,6 +2,7 @@ import Input from "../Input";
 import Card from "../Card";
 import TextField from "../TextField";
 import { AppointmentDetailsModel } from "@/src/models/AppointmentModel";
+import { t } from "i18next";
 
 export interface TabPanelProps {
   index: number;
@@ -46,11 +47,11 @@ export default function DetailsTab(props: TabPanelProps) {
     >
       {value === index && (
         <article className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
-          <Card title="Información personal">
+          <Card title={t("patients.details-tab-info.personal-info.title")}>
             <section className="grid grid-cols-2 gap-4 ">
               <Input
                 name="name"
-                label="Nombre"
+                label={t("patients.details-tab-info.personal-info.name")}
                 type="text"
                 disabled={!isEditing || isLoading}
                 onChange={handleChange}
@@ -58,7 +59,9 @@ export default function DetailsTab(props: TabPanelProps) {
               />
               <Input
                 name="maritalStatus"
-                label="Estado civil"
+                label={t(
+                  "patients.details-tab-info.personal-info.marital-status"
+                )}
                 type="text"
                 disabled={!isEditing || isLoading}
                 onChange={handleChange}
@@ -66,7 +69,7 @@ export default function DetailsTab(props: TabPanelProps) {
               />
               <Input
                 name="gender"
-                label="Género"
+                label={t("patients.details-tab-info.personal-info.gender")}
                 type="text"
                 disabled={!isEditing || isLoading}
                 onChange={handleChange}
@@ -74,7 +77,7 @@ export default function DetailsTab(props: TabPanelProps) {
               />
               <Input
                 name="occupation"
-                label="Ocupación"
+                label={t("patients.details-tab-info.personal-info.occupation")}
                 type="text"
                 disabled={!isEditing || isLoading}
                 onChange={handleChange}
@@ -82,7 +85,7 @@ export default function DetailsTab(props: TabPanelProps) {
               />
               <Input
                 name="phone"
-                label="Teléfono"
+                label={t("patients.details-tab-info.personal-info.phone")}
                 type="text"
                 disabled={!isEditing || isLoading}
                 onChange={handleChange}
@@ -90,7 +93,7 @@ export default function DetailsTab(props: TabPanelProps) {
               />
               <Input
                 name="address"
-                label="Dirección"
+                label={t("patients.details-tab-info.personal-info.address")}
                 type="text"
                 disabled={!isEditing || isLoading}
                 className="row-span-2"
@@ -99,7 +102,7 @@ export default function DetailsTab(props: TabPanelProps) {
               />
               <Input
                 name="age"
-                label="Edad"
+                label={t("patients.details-tab-info.personal-info.age")}
                 type="number"
                 disabled={!isEditing || isLoading}
                 onChange={handleChange}
@@ -107,7 +110,7 @@ export default function DetailsTab(props: TabPanelProps) {
               />
               <Input
                 name="birthDate"
-                label="Fecha de nacimiento"
+                label={t("patients.details-tab-info.personal-info.birthdate")}
                 type="date"
                 disabled={!isEditing || isLoading}
                 onChange={handleChange}
@@ -115,7 +118,9 @@ export default function DetailsTab(props: TabPanelProps) {
               />
               <Input
                 name="municipality"
-                label="Municipio"
+                label={t(
+                  "patients.details-tab-info.personal-info.municipality"
+                )}
                 type="text"
                 disabled={!isEditing || isLoading}
                 onChange={handleChange}
@@ -123,7 +128,7 @@ export default function DetailsTab(props: TabPanelProps) {
               />
               <Input
                 name="locality"
-                label="Localidad"
+                label={t("patients.details-tab-info.personal-info.locality")}
                 type="text"
                 disabled={!isEditing || isLoading}
                 onChange={handleChange}
@@ -131,7 +136,7 @@ export default function DetailsTab(props: TabPanelProps) {
               />
               <Input
                 name="state"
-                label="Estado"
+                label={t("patients.details-tab-info.personal-info.state")}
                 type="text"
                 disabled={!isEditing || isLoading}
                 onChange={handleChange}
@@ -139,7 +144,7 @@ export default function DetailsTab(props: TabPanelProps) {
               />
               <Input
                 name="email"
-                label="Correo electrónico"
+                label={t("patients.details-tab-info.personal-info.email")}
                 type="email"
                 disabled={!isEditing || isLoading}
                 onChange={handleChange}
@@ -147,7 +152,7 @@ export default function DetailsTab(props: TabPanelProps) {
               />
               <Input
                 name="curp"
-                label="CURP"
+                label={t("patients.details-tab-info.personal-info.curp")}
                 type="text"
                 disabled={!isEditing || isLoading}
                 onChange={handleChange}
@@ -156,11 +161,13 @@ export default function DetailsTab(props: TabPanelProps) {
             </section>
           </Card>
 
-          <Card title="Datos del embarazo">
+          <Card title={t("patients.details-tab-info.pregnancy-info.title")}>
             <section className="grid grid-cols-2 gap-4">
               <Input
                 name="lastMenstruation"
-                label="Fecha de última menstruación"
+                label={t(
+                  "patients.details-tab-info.pregnancy-info.last-menstrual-period"
+                )}
                 type="date"
                 disabled={!isEditing || isLoading}
                 value={formData?.pregnancyData?.lastMenstruation}
@@ -168,7 +175,9 @@ export default function DetailsTab(props: TabPanelProps) {
               />
               <Input
                 name="dueDate"
-                label="Fecha probable de parto"
+                label={t(
+                  "patients.details-tab-info.pregnancy-info.estimated-due-date"
+                )}
                 type="date"
                 disabled={!isEditing || isLoading}
                 value={formData?.pregnancyData?.dueDate}
@@ -176,7 +185,9 @@ export default function DetailsTab(props: TabPanelProps) {
               />
               <Input
                 name="gestationStage"
-                label="Edad gestacional (semana)"
+                label={t(
+                  "patients.details-tab-info.pregnancy-info.gestational-stage"
+                )}
                 type="number"
                 disabled={!isEditing || isLoading}
                 value={formData?.pregnancyData?.gestationStage}
@@ -184,7 +195,9 @@ export default function DetailsTab(props: TabPanelProps) {
               />
               <Input
                 name="previousPregnancies"
-                label="Número de embarazo"
+                label={t(
+                  "patients.details-tab-info.pregnancy-info.current-pregnancy-number"
+                )}
                 type="number"
                 disabled={!isEditing || isLoading}
                 value={formData?.pregnancyData?.previousPregnancies}
@@ -192,7 +205,7 @@ export default function DetailsTab(props: TabPanelProps) {
               />
               <Input
                 name="abortions"
-                label="Número de abortos"
+                label={t("patients.details-tab-info.pregnancy-info.abortions")}
                 type="number"
                 disabled={!isEditing || isLoading}
                 value={formData?.pregnancyData?.abortions}
@@ -200,7 +213,9 @@ export default function DetailsTab(props: TabPanelProps) {
               />
               <Input
                 name="pregnancyType"
-                label="Tipo de embarazo"
+                label={t(
+                  "patients.details-tab-info.pregnancy-info.pregnancy-type"
+                )}
                 type="text"
                 disabled={!isEditing || isLoading}
                 value={formData?.pregnancyData?.pregnancyType}
@@ -208,7 +223,9 @@ export default function DetailsTab(props: TabPanelProps) {
               />
               <TextField
                 name="complication"
-                label="Complicaciones"
+                label={t(
+                  "patients.details-tab-info.pregnancy-info.complications"
+                )}
                 className="col-span-2"
                 disabled={!isEditing || isLoading}
                 value={formData?.pregnancyData?.complication}
@@ -216,7 +233,9 @@ export default function DetailsTab(props: TabPanelProps) {
               />
               <TextField
                 name="observations"
-                label="Observaciones"
+                label={t(
+                  "patients.details-tab-info.pregnancy-info.observations"
+                )}
                 className="col-span-2"
                 disabled={!isEditing || isLoading}
                 value={formData?.pregnancyData?.observations}
@@ -225,32 +244,41 @@ export default function DetailsTab(props: TabPanelProps) {
             </section>
           </Card>
 
-          <Card title="Antecedentes médicos" className="col-span-2">
+          <Card
+            title={t("patients.details-tab-info.medical-history.title")}
+            className="col-span-2"
+          >
             <section className="gap-4">
               <TextField
                 name="medicalConditions"
-                label="Condiciones médicas"
+                label={t(
+                  "patients.details-tab-info.medical-history.medical-conditions"
+                )}
                 disabled={!isEditing || isLoading}
                 value={formData?.medicalHistory?.medicalConditions}
                 onChange={handleChange}
               />
               <TextField
                 name="gynecologicalHistory"
-                label="Historia ginecológica"
+                label={t(
+                  "patients.details-tab-info.medical-history.gynecological-history"
+                )}
                 disabled={!isEditing || isLoading}
                 value={formData?.medicalHistory?.gynecologicalHistory}
                 onChange={handleChange}
               />
               <TextField
                 name="allergies"
-                label="Alergias"
+                label={t("patients.details-tab-info.medical-history.allergies")}
                 disabled={!isEditing || isLoading}
                 value={formData?.medicalHistory?.allergies}
                 onChange={handleChange}
               />
               <TextField
                 name="familyHistory"
-                label="Historial Familiar"
+                label={t(
+                  "patients.details-tab-info.medical-history.family-history"
+                )}
                 disabled={!isEditing || isLoading}
                 value={formData?.medicalHistory?.familyHistory}
                 onChange={handleChange}

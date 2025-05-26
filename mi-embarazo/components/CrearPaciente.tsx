@@ -10,6 +10,7 @@ import { PatientModel } from "@/src/models/PatientModel";
 import { DoctorModel } from "@/src/models/DoctorModel";
 import { fetchDoctors } from "@/src/services/adminDoctoresService";
 import { useSnackbar } from "notistack";
+import { t } from "i18next";
 
 export default function CrearPaciente() {
   const pathname = usePathname();
@@ -77,13 +78,11 @@ export default function CrearPaciente() {
         setIsLoading(false);
       });
 
-      enqueueSnackbar("Paciente creado correctamente", {
+      enqueueSnackbar(t("patients.add-success-message.snackbar"), {
         variant: "success",
       });
     } catch (error) {
-      console.error(error);
-
-      enqueueSnackbar("Error al crear el paciente", {
+      enqueueSnackbar(t("add-error-message.snackbar"), {
         variant: "error",
       });
     }
@@ -98,7 +97,7 @@ export default function CrearPaciente() {
               className="text-[#8b8b8b] text-sm font-bold pl-2"
               htmlFor="doctors"
             >
-              Asignar doctor
+              {t("patients.select-doctor-label")}
             </label>
             <select
               required
@@ -109,7 +108,7 @@ export default function CrearPaciente() {
               disabled={isFetchingDoctors}
             >
               <option hidden={doctors.length > 0} value="">
-                Cargando doctores...
+                {t("patients.select-doctor-placeholder")}
               </option>
               {doctors.map((doctor) => (
                 <option key={doctor.id} value={doctor.id}>
@@ -122,7 +121,7 @@ export default function CrearPaciente() {
         <div className="flex gap-4">
           <Link href={`/${role}/pacientes`} passHref>
             <Button variant="outlined" color="secondary" disabled={isLoading}>
-              Cancelar
+              {t("btn-cancel")}
             </Button>
           </Link>
           <Button
@@ -131,7 +130,7 @@ export default function CrearPaciente() {
             color="secondary"
             disabled={isLoading || isFetchingDoctors}
           >
-            {isLoading ? "Guardando..." : "Guardar"}
+            {isLoading ? t("saving-status") : t("btn-save")}
           </Button>
         </div>
       </section>
@@ -142,7 +141,7 @@ export default function CrearPaciente() {
         className="mb-6"
         onChange={(e, newValue) => setTab(newValue)}
       >
-        <Tab value={0} label="Detalles" />
+        <Tab value={0} label={t("patients.details-tab-title")} />
         {/* <Tab value={1} label="Historial" /> */}
       </Tabs>
       <DetailsTab

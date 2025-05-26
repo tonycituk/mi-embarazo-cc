@@ -16,6 +16,7 @@ import { DoctorModel } from "@/src/models/DoctorModel";
 import { fetchDoctors } from "@/src/services/adminDoctoresService";
 import Input from "./ui/Input";
 import { useSnackbar } from "notistack";
+import { t } from "i18next";
 
 export default function PacientesPage({ role }: { role: string }) {
   const [patients, setPatients] = useState<PatientModel[]>([]);
@@ -51,12 +52,14 @@ export default function PacientesPage({ role }: { role: string }) {
       setPatients(fetchedPatients);
 
       if (fetchedPatients.length === 0) {
-        enqueueSnackbar("No hay pacientes disponibles", {
+        enqueueSnackbar(t("patients.empty-patients-message.snackbar"), {
           variant: "info",
         });
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      enqueueSnackbar(t("patients.error-patients-message.snackbar"), {
+        variant: "error",
+      });
     } finally {
       setIsLoading(false);
       setIsDeletingPatient(false);
@@ -76,12 +79,11 @@ export default function PacientesPage({ role }: { role: string }) {
         fetchData();
       });
 
-      enqueueSnackbar("Paciente eliminado correctamente", {
+      enqueueSnackbar(t("patients.delete-success-message.snackbar"), {
         variant: "success",
       });
     } catch (error) {
-      console.error(error);
-      enqueueSnackbar("Error al eliminar el paciente", {
+      enqueueSnackbar(t("patients.delete-error-message.snackbar"), {
         variant: "error",
       });
     }
@@ -105,13 +107,15 @@ export default function PacientesPage({ role }: { role: string }) {
 
   return (
     <Card
-      title="Pacientes"
-      subtitle={`(${patients.length}) pacientes`}
+      title={t("patients.patients-page-title")}
+      subtitle={t("patients.patient-page-subtitle", {
+        count: filteredPatients.length,
+      })}
       action={
         <Link href={`/${role}/pacientes/crear`}>
           <button className="flex items-center space-x-2 font-bold text-[--primary-color] hover:text-[--primary-color-dark]">
             <PersonAddRounded />
-            <span>Añadir paciente</span>
+            <span>{t("btn-new-patient")}</span>
           </button>
         </Link>
       }
@@ -125,7 +129,7 @@ export default function PacientesPage({ role }: { role: string }) {
         )}
         <Input
           name="search"
-          placeholder="Buscar paciente por nombre, doctor o expediente"
+          placeholder={t("patients.search-placeholder")}
           className="col-span-full"
           type="search"
           value={searchQuery}

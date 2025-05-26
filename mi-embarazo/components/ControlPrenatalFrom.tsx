@@ -2,6 +2,7 @@ import React from "react";
 import Input from "./ui/Input";
 import TextField from "./ui/TextField";
 import { AppointmentDetailsModel } from "@/src/models/AppointmentModel";
+import { t } from "i18next";
 
 interface ControlPrenatalFormProps {
   formData: AppointmentDetailsModel;
@@ -34,7 +35,7 @@ export default function ControlPrenatalForm({
     <>
       <Input
         name="weight"
-        label="Peso"
+        label={t("patients.prenatal-tab-info.data.weight")}
         type="text"
         disabled={!isEditing || isLoading || !isEditable}
         value={formData?.weight || ""}
@@ -42,7 +43,7 @@ export default function ControlPrenatalForm({
       />
       <Input
         name="bloodPressure"
-        label="Presión arterial"
+        label={t("patients.prenatal-tab-info.data.blood-pressure")}
         type="text"
         disabled={!isEditing || isLoading || !isEditable}
         value={formData?.bloodPressure || ""}
@@ -50,7 +51,7 @@ export default function ControlPrenatalForm({
       />
       <Input
         name="fetalHeartRate"
-        label="Frecuencia cardiaca fetal"
+        label={t("patients.prenatal-tab-info.data.fetal-heart-rate")}
         type="text"
         disabled={!isEditing || isLoading || !isEditable}
         value={formData?.fetalHeartRate || ""}
@@ -58,7 +59,7 @@ export default function ControlPrenatalForm({
       />
       <Input
         name="fetalStatus"
-        label="Estado fetal"
+        label={t("patients.prenatal-tab-info.data.fetal-status")}
         type="text"
         disabled={!isEditing || isLoading || !isEditable}
         value={formData?.fetalStatus || ""}
@@ -66,14 +67,14 @@ export default function ControlPrenatalForm({
       />
       <TextField
         name="observations"
-        label="Observaciones"
+        label={t("patients.prenatal-tab-info.data.observations")}
         disabled={!isEditing || isLoading || !isEditable}
         value={formData?.observations || ""}
         onChange={handleChange}
       />
       <TextField
         name="prescription"
-        label="Prescripción"
+        label={t("patients.prenatal-tab-info.data.prescription")}
         disabled={!isEditing || isLoading || !isEditable}
         value={formData?.prescription || ""}
         onChange={handleChange}

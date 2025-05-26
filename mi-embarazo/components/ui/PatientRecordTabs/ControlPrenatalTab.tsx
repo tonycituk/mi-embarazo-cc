@@ -7,6 +7,7 @@ import { TabPanelProps } from "./DetailsTab";
 import { useEffect, useState } from "react";
 import { DateTime } from "luxon";
 import DateNavigator from "@/components/DateNavigator";
+import { t } from "i18next";
 
 export default function ControlPrenatalTab(props: TabPanelProps) {
   const {
@@ -63,7 +64,7 @@ export default function ControlPrenatalTab(props: TabPanelProps) {
                   handleDateChange(newDate);
                 }}
                 restrictedDateNavigation
-                errorMessage="No hay registros para esta fecha."
+                errorMessage={t("patients.prenatal-tab-info.date-error")}
               />
 
               <ControlPrenatalForm
@@ -91,7 +92,7 @@ export default function ControlPrenatalTab(props: TabPanelProps) {
                     height={350}
                   />
                   <p className="text-center text-gray-500 mt-4">
-                    No hay datos de control prenatal.
+                    {t("patients.prenatal-tab-info.no-records")}
                   </p>
                 </div>
               )}

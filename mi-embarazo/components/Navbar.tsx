@@ -13,6 +13,7 @@ import {
 } from "@mui/icons-material";
 import { deleteCookie } from "cookies-next";
 import { useEffect, useState } from "react";
+import { t } from "i18next";
 
 export default function Navbar({ role }: { role: string }) {
   const router = useRouter();
@@ -56,7 +57,7 @@ export default function Navbar({ role }: { role: string }) {
               } flex gap-x-1 `}
             >
               <HomeRounded />
-              Inicio
+              {t("navigation.dashboard")}
             </Link>
             {role === "admin" && (
               <Link
@@ -68,7 +69,7 @@ export default function Navbar({ role }: { role: string }) {
                 } flex gap-x-1`}
               >
                 <FaceRounded />
-                Doctores
+                {t("navigation.doctors")}
               </Link>
             )}
             <Link
@@ -80,7 +81,7 @@ export default function Navbar({ role }: { role: string }) {
               } flex gap-x-1`}
             >
               <DateRangeRounded />
-              Citas
+              {t("navigation.appointments")}
             </Link>
             <Link
               href={`/${role}/pacientes`}
@@ -91,7 +92,7 @@ export default function Navbar({ role }: { role: string }) {
               } flex gap-x-1`}
             >
               <GroupsRounded />
-              Pacientes
+              {t("navigation.patients")}
             </Link>
           </section>
           <div className="flex items-center space-x-14">
@@ -107,7 +108,7 @@ export default function Navbar({ role }: { role: string }) {
               className="flex font-bold text-[--primary-color] hover:text-[--primary-color-dark]"
             >
               <LogoutRounded />
-              Cerrar sesión
+              {t("navigation.logout")}
             </button>
           </div>
         </article>

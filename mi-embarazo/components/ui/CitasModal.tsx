@@ -9,6 +9,7 @@ import {
 } from "@/src/services/citasService";
 import { PatientModel } from "@/src/models/PatientModel";
 import { useSnackbar } from "notistack";
+import { t } from "i18next";
 
 const resetForm: AppointmentModel = new AppointmentModel(
   "",
@@ -51,10 +52,13 @@ export default function CitasModal({
         ...appointment,
         time: DateTime.fromFormat(appointment.time, "HH:mm").toFormat("HH:mm"),
         date: DateTime.fromISO(appointment.date).toFormat("yyyy-MM-dd"),
-        status: appointment.status === "" ? "Confirmada" : appointment.status,
+        status:
+          appointment.status === ""
+            ? t("appointments.status")
+            : appointment.status,
         date_type:
           appointment.date_type === ""
-            ? "Nuevo paciente"
+            ? t("appointments.appointment-type.new")
             : appointment.date_type,
       };
       setFormData(formattedAppointment);
@@ -88,12 +92,11 @@ export default function CitasModal({
     try {
       const response = await createAppointment(appointment);
       if (response)
-        enqueueSnackbar("Cita creada correctamente", {
+        enqueueSnackbar(t("appointments.add-success-message.snackbar"), {
           variant: "success",
         });
     } catch (error) {
-      console.error("Error al realizar la solicitud POST:", error);
-      enqueueSnackbar("Error al crear la cita", {
+      enqueueSnackbar(t("appointments.add-error-message.snackbar"), {
         variant: "error",
       });
     }
@@ -104,12 +107,11 @@ export default function CitasModal({
       const response = await updateAppointmentDetails(appointment);
 
       if (response)
-        enqueueSnackbar("Cita actualizada correctamente", {
+        enqueueSnackbar(t("appointments.update-success-message.snackbar"), {
           variant: "success",
         });
     } catch (error) {
-      console.error("Error al realizar la solicitud PUT:", error);
-      enqueueSnackbar("Error al actualizar la cita", {
+      enqueueSnackbar(t("appointments.update-error-message.snackbar"), {
         variant: "error",
       });
     }
@@ -139,14 +141,16 @@ export default function CitasModal({
     <Modal open={isOpen}>
       <div className="bg-white p-8 w-[30rem] mx-auto mt-20 rounded-md">
         <h2 className="text-2xl font-bold">
-          {appointment ? "Editar cita" : "Nueva cita"}
+          {appointment
+            ? t("appointments.modal-title.edit")
+            : t("appointments.modal-title.new")}
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
           <label
             className="text-[#8b8b8b] text-sm font-bold"
             htmlFor="paciente"
           >
-            Nombre
+            {t("appointments.select-patient-label")}
           </label>
           <select
             id="patient"
@@ -161,7 +165,9 @@ export default function CitasModal({
                 {appointment.patient_name}
               </option>
             ) : (
-              <option value="">Seleccionar paciente</option>
+              <option value="">
+                {t("appointments.select-patient-placeholder")}
+              </option>
             )}
             {!appointment &&
               availablePatients.map((patient) => (
@@ -171,7 +177,7 @@ export default function CitasModal({
               ))}
           </select>
           <Input
-            label="Expediente"
+            label={t("appointments.label-record")}
             name="record"
             type="text"
             value={formData.record}
@@ -181,7 +187,7 @@ export default function CitasModal({
           <div className="flex space-x-2">
             <Input
               className="flex-1"
-              label="Fecha de cita"
+              label={t("appointments.label-appointment-date")}
               name="date"
               type="date"
               value={formData.date}
@@ -189,7 +195,7 @@ export default function CitasModal({
             />
             <Input
               className="flex-1"
-              label="Hora de cita"
+              label={t("appointments.label-appointment-time")}
               name="time"
               type="time"
               value={formData.time}
@@ -202,7 +208,7 @@ export default function CitasModal({
                 className="text-[#8b8b8b] text-sm font-bold"
                 htmlFor="type"
               >
-                Tipo de cita
+                {t("appointments.label-appointment-type")}
               </label>
               <select
                 id="date_type"
@@ -215,13 +221,13 @@ export default function CitasModal({
                   className="hover:bg-[--primary-color-light]"
                   value="Nuevo paciente"
                 >
-                  Nuevo paciente
+                  {t("appointments.appointment-type.new")}
                 </option>
                 <option
                   className="hover:bg-[--primary-color-light]"
                   value="Seguimiento"
                 >
-                  Seguimiento
+                  {t("appointments.appointment-type.follow-up")}
                 </option>
               </select>
             </div>
@@ -230,7 +236,7 @@ export default function CitasModal({
                 className="text-[#8b8b8b] text-sm font-bold"
                 htmlFor="status"
               >
-                Estado
+                {t("appointments.label-status")}
               </label>
               <select
                 id="status"
@@ -239,10 +245,18 @@ export default function CitasModal({
                 value={formData.status}
                 onChange={handleChange}
               >
-                <option value="Confirmada">Confirmada</option>
-                <option value="Pendiente">Pendiente</option>
-                <option value="Cancelada">Cancelada</option>
-                <option value="Finalizada">Finalizada</option>
+                <option value="Confirmada">
+                  {t("appointments.status.confirmed")}
+                </option>
+                <option value="Pendiente">
+                  {t("appointments.status.pending")}
+                </option>
+                <option value="Cancelada">
+                  {t("appointments.status.canceled")}
+                </option>
+                <option value="Finalizada">
+                  {t("appointments.status.completed")}
+                </option>
               </select>
             </div>
           </div>
@@ -251,14 +265,14 @@ export default function CitasModal({
               type="submit"
               className="bg-[--primary-color] text-white rounded-md p-2 w-full"
             >
-              Guardar
+              {t("btn-save")}
             </button>
             <button
               type="button"
               onClick={handleCancel}
               className="bg-red-100 text-red-700 rounded-md p-2 w-full hover:bg-red-200"
             >
-              Cancelar
+              {t("btn-cancel")}
             </button>
           </section>
         </form>

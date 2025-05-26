@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { DeleteRounded, Edit } from "@mui/icons-material";
 import { DoctorModel } from "@/src/models/DoctorModel";
+import { t } from "i18next";
 
 type DoctorsTableProps = {
   doctors: DoctorModel[];
@@ -30,25 +31,25 @@ export default function DoctorsTable({
         <TableHead>
           <TableRow>
             <TableCell>
-              <strong>Nombre</strong>
+              <strong>{t("doctors.table-name")}</strong>
             </TableCell>
             <TableCell>
-              <strong>Especialidad</strong>
+              <strong>{t("doctors.table-specialization")}</strong>
             </TableCell>
             <TableCell>
-              <strong>Correo</strong>
+              <strong>{t("doctors.table-email")}</strong>
             </TableCell>
             <TableCell>
-              <strong>Teléfono</strong>
+              <strong>{t("doctors.table-phone")}</strong>
             </TableCell>
             <TableCell>
-              <strong>Género</strong>
+              <strong>{t("doctors.table-gender")}</strong>
             </TableCell>
             <TableCell>
-              <strong>Consultorio</strong>
+              <strong>{t("doctors.table-office")}</strong>
             </TableCell>
             <TableCell>
-              <strong>Cédula</strong>
+              <strong>{t("doctors.table-professional-license")}</strong>
             </TableCell>
             <TableCell></TableCell>
           </TableRow>

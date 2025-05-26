@@ -1,0 +1,231 @@
+{
+  "login-page": {
+    "title": "¡Bienvenido de nuevo al sistema de gestión de la clínica!",
+    "subtitle": "Ingrese su correo electrónico y contraseña para acceder a su cuenta.",
+    "email-label": "Correo electrónico",
+    "email-placeholder": "janedoe@ejemplo.com",
+    "password-label": "Contraseña",
+    "validation": {
+      "email-required": "Se requiere correo electrónico",
+      "email-invalid": "Formato de correo electrónico no válido",
+      "password-length": "La contraseña debe tener al menos 8 caracteres"
+    },
+    "login-error-message": "Se produjo un error al iniciar sesión"
+  },
+  "doctors": {
+    "dashboard-welcome-title": "Bienvenido/a",
+    "dashboard-welcome-subtitle": "Revisa la información general sobre el paciente y las próximas citas.",
+    "dashboard-doctors-title": "Doctores",
+    "dashboard-patients-title": "Pacientes",
+    "dashboard-appointments-title": "Citas programadas",
+    "dashboard-appointments-empty": "No hay citas programadas",
+    "dashboard-patient-notes": "Notas del paciente",
+    "dashboard-patient-notes-empty": "No hay notas del paciente",
+    "dashboard-patient-record-link": "Ver expediente",
+    "doctor-page-title": "Doctores",
+    "search-placeholder": "Buscar doctores",
+    "label-name": "Nombre",
+    "label-specialization": "Especialización",
+    "label-phone": "Teléfono",
+    "label-email": "Correo electrónico",
+    "label-professional-license": "Cédula profesional",
+    "label-password": "Contraseña",
+    "label-office": "Oficina",
+    "select-gender-label": "Género",
+    "select-gender-placeholder": "Elige un género",
+    "select-gender": {
+      "male": "Masculino",
+      "female": "Femenino"
+    },
+    "table-name": "Nombre",
+    "table-specialization": "Especialización",
+    "table-email": "Correo electrónico",
+    "table-phone": "Teléfono",
+    "table-gender": "Género",
+    "table-office": "Oficina",
+    "table-professional-license": "Cédula profesional",
+    "modal-title": {
+      "new": "Nuevo doctor",
+      "edit": "Editar doctor"
+    },
+    "modal-delete.title": "Eliminar doctor",
+    "modal-delete.message": "¿Estás seguro de que quieres eliminar al doctor {{name}}? ",
+    "ending-appointment-message": "Finalizando cita...",
+    "end-appointment-success-message.snackbar": "Cita terminada con éxito",
+    "add-success-message.snackbar": "Doctor creado con éxito",
+    "update-success-message.snackbar": "Doctor actualizado con éxito",
+    "delete-success-message.snackbar": "Doctor eliminado con éxito",
+    "delete-error-message.snackbar": "Error de eliminación del médico",
+    "add-error-message.snackbar": "Médico de ahorro de errores",
+    "empty-doctors-message.snackbar": "No hay médicos registrados",
+    "error-doctors-message.snackbar": "Se produjo un error al cargar a los médicos"
+  },
+  "appointments": {
+    "appointment-page-title": "Citas",
+    "search-placeholder": "Buscar citas",
+    "label-record": "Número de expediente",
+    "label-appointment-date": "Fecha de cita",
+    "label-appointment-time": "Hora de cita",
+    "label-appointment-type": "Tipo de cita",
+    "label-status": "Estado",
+    "select-patient-label": "Nombre",
+    "select-patient-placeholder": "Seleccione un paciente",
+    "table-name": "Nombre del paciente",
+    "table-record": "Número de registro",
+    "table-date": "Fecha programada",
+    "table-time": "Hora programada",
+    "table-appointment-type": "Tipo",
+    "table-status": "Estado",
+    "modal-title": {
+      "new": "Nueva cita",
+      "edit": "Editar cita"
+    },
+    "modal-delete.title": "Eliminar cita",
+    "modal-delete.message": "¿Estás seguro de que quieres eliminar esta cita?",
+    "appointment-type": {
+      "new": "Nuevo paciente",
+      "consultation": "Consulta",
+      "follow-up": "Seguimiento",
+      "emergency": "Emergencia"
+    },
+    "status": {
+      "scheduled": "Programado",
+      "completed": "Terminado",
+      "pending": "Pendiente",
+      "confirmed": "Confirmado",
+      "canceled": "Cancelado"
+    },
+    "add-success-message.snackbar": "Cita creada con éxito",
+    "update-success-message.snackbar": "Cita actualizada con éxito",
+    "delete-success-message.snackbar": "Cita eliminada con éxito",
+    "add-error-message.snackbar": "Se produjo un error al guardar la cita",
+    "update-error-message.snackbar": "Se produjo un error al actualizar la cita",
+    "delete-error-message.snackbar": "Se produjo un error al eliminar la cita",
+    "empty-appointments-message.snackbar": "No hay citas programadas",
+    "error-appointments-message.snackbar": "Se produjo un error al cargar las citas"
+  },
+  "patients": {
+    "patients-page-title": "Pacientes",
+    "patient-page-subtitle": "({{count}}) paciente/s registrado/s",
+    "search-placeholder": "Buscar por nombre del paciente, doctor o expediente",
+    "card": {
+      "doctor": "Doctor",
+      "age": "{{age}} años",
+      "gestation-stage": "{{weeks}} semanas embarazadas"
+    },
+    "select-doctor-label": "Elija un doctor",
+    "select-doctor-placeholder": "Cargando doctores...",
+    "last-appointment": "Última cita:",
+    "no-last-appointment": "No hay citas programadas todavía",
+    "details-tab-title": "Detalles",
+    "details-tab-info": {
+      "personal-info": {
+        "title": "Información personal",
+        "name": "Nombre",
+        "marital-status": "Estado civil",
+        "gender": "Género",
+        "occupation": "Ocupación",
+        "phone": "Teléfono",
+        "address": "Dirección",
+        "age": "Edad",
+        "birthdate": "Fecha de nacimiento",
+        "municipality": "Municipio",
+        "locality": "Localidad",
+        "state": "Estado",
+        "email": "Correo electrónico",
+        "curp": "CURP"
+      },
+      "pregnancy-info": {
+        "title": "Información del embarazo",
+        "last-menstrual-period": "Último período menstrual",
+        "estimated-due-date": "Fecha de parto estimada",
+        "gestational-stage": "Etapa gestacional (semanas)",
+        "current-pregnancy-number": "Número de embarazo",
+        "abortions": "Abortos (si los hay)",
+        "pregnancy-type": "Tipo de embarazo",
+        "pregnancy-type-options": {
+          "single": "Único",
+          "twin": "Gemelos",
+          "triplet": "Trillizos"
+        },
+        "complications": "Complicaciones (si las hay)",
+        "observations": "Observaciones (si las hay)"
+      },
+      "medical-history": {
+        "title": "Antecedentes médicos",
+        "medical-conditions": "Condiciones médicas",
+        "gynecological-history": "Historia ginecológica",
+        "allergies": "Alergias",
+        "family-history": "Historia familiar"
+      }
+    },
+    "prenatal-tab-title": "Cuidado prenatal",
+    "prenatal-tab-info": {
+      "date-error": "No hay registros de atención prenatal para la fecha seleccionada.",
+      "no-records": "No hay registros de cuidado prenatales disponibles.",
+      "data": {
+        "weight": "Peso",
+        "blood-pressure": "Presión arterial",
+        "fetal-heart-rate": "Frecuencia cardíaca fetal",
+        "fetal-status": "Estado del feto",
+        "observations": "Observaciones",
+        "prescription": "Prescripción"
+      }
+    },
+    "modal-delete.title": "Eliminar paciente",
+    "modal-delete.message": "¿Estás seguro de que quieres eliminar al paciente {{name}}? ",
+    "add-success-message.snackbar": "Paciente creado con éxito",
+    "update-success-message.snackbar": "Información del paciente actualizada con éxito",
+    "appointment-update-success-message.snackbar": "Detalles de la cita actualizados con éxito",
+    "delete-success-message.snackbar": "Paciente eliminado con éxito",
+    "add-error-message.snackbar": "Paciente para guardar errores",
+    "update-error-message.snackbar": "Actualización de errores al paciente",
+    "appointment-update-error-message.snackbar": "Ocurrió un error al actualizar los detalles de la cita",
+    "delete-error-message.snackbar": "Ocurrió un error al eliminar el paciente",
+    "empty-patients-message.snackbar": "No hay pacientes registrados",
+    "error-patients-message.snackbar": "Se produjo un error al cargar pacientes"
+  },
+  "navigation": {
+    "dashboard": "Inicio",
+    "doctors": "Doctores",
+    "appointments": "Citas",
+    "patients": "Pacientes",
+    "logout": "Cerrar sesión"
+  },
+  "profile-page": {
+    "title": "Mi perfil",
+    "subtitle": " Administra tu información personal y datos de la cuenta.",
+    "detail-card": {
+      "title": "Información de la cuenta",
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "role": "Role",
+      "admin": "Administrador",
+      "doctor": "Doctor",
+      "current-password": "Contraseña actual",
+      "new-password": "Nueva contraseña",
+      "confirm-password": "Confirmar contraseña"
+    },
+    "validation": {
+      "email-error": "Formato de correo electrónico no válido",
+      "current-password-required": "Se requiere la contraseña actual",
+      "passwords-mismatch": "Las contraseñas ingresadas no coinciden",
+      "incorrect-password": "La contraseña es incorrecta"
+    },
+    "error-verifying-password-message.snackbar": "Error al verificar la contraseña actual",
+    "update-success-message.snackbar": "Perfil actualizado con éxito",
+    "update-error-message.snackbar": "Perfil de actualización de errores"
+  },
+  "loading-status": "Cargando...",
+  "saving-status": "Guardando...",
+  "verifying-status": "Validando...",
+  "btn-login": "Acceso",
+  "btn-delete": "Borrar",
+  "btn-save": "Ahorrar",
+  "btn-edit": "Editar",
+  "btn-cancel": "Cancelar",
+  "btn-new-appointment": "Nueva cita",
+  "btn-new-doctor": "Nuevo doctor",
+  "btn-new-patient": "Agregar nuevo paciente"
+}

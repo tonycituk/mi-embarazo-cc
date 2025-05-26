@@ -13,6 +13,7 @@ import { DeleteRounded, Edit } from "@mui/icons-material";
 
 import { DateTime } from "luxon";
 import { AppointmentModel } from "@/src/models/AppointmentModel";
+import { useTranslation } from "react-i18next";
 
 type AppointmentsTableProps = {
   appointments: AppointmentModel[];
@@ -55,28 +56,30 @@ export default function AppointmentsTable({
   role, // Added "role" prop to function arguments
   isLoading,
 }: AppointmentsTableProps) {
+  const { t } = useTranslation();
+
   return (
     <TableContainer component={Paper} className="pt-6">
       <Table aria-label="appointments table">
         <TableHead>
           <TableRow>
             <TableCell>
-              <strong>Nombre del paciente</strong>
+              <strong>{t("appointments.table-name")}</strong>
             </TableCell>
             <TableCell>
-              <strong>No. Expediente</strong>
+              <strong>{t("appointments.table-record")}</strong>
             </TableCell>
             <TableCell>
-              <strong>Fecha de cita</strong>
+              <strong>{t("appointments.table-date")}</strong>
             </TableCell>
             <TableCell>
-              <strong>Hora de cita</strong>
+              <strong>{t("appointments.table-time")}</strong>
             </TableCell>
             <TableCell>
-              <strong>Tipo de cita</strong>
+              <strong>{t("appointments.table-appointment-type")}</strong>
             </TableCell>
             <TableCell>
-              <strong>Estado</strong>
+              <strong>{t("appointments.table-status")}</strong>
             </TableCell>
             <TableCell></TableCell>
           </TableRow>

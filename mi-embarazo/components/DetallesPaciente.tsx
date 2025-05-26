@@ -8,6 +8,7 @@ import { PatientModel } from "@/src/models/PatientModel";
 import { LinearProgress } from "@mui/material";
 import { AppointmentDetailsModel } from "@/src/models/AppointmentModel";
 import { getAppointmentByPatient } from "@/src/services/citasService";
+import { t } from "i18next";
 
 export default function DetallesPaciente({
   params,
@@ -94,8 +95,10 @@ export default function DetallesPaciente({
           <h1 className="text-3xl font-bold">{patient.personalData.name}</h1>
         </div>
         <p className="text-gray-400 pt-1">
-          <span className="font-bold">Última cita:</span>{" "}
-          {appointmentDate ? lastAppointmentDate : "Sin citas"}
+          <span className="font-bold">{t("patients.last-appointment")}</span>{" "}
+          {appointmentDate
+            ? lastAppointmentDate
+            : t("patients.no-last-appointment")}
         </p>
       </section>
       <PatientRecord

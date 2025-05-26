@@ -6,6 +6,7 @@ import { DeleteRounded, OpenInNewRounded } from "@mui/icons-material";
 import { useState } from "react";
 import DeleteModal from "./DeleteModal";
 import { PatientModel } from "@/src/models/PatientModel";
+import { t } from "i18next";
 
 export default function PatientCard({
   patient,
@@ -36,9 +37,11 @@ export default function PatientCard({
         <div>
           <h3 className="font-bold">{patient.personalData.name}</h3>
           <p className="text-sm text-gray-400">
-            {patient.personalData?.age} años |{" "}
+            {t("patients.card.age", { age: patient.personalData?.age })} |{" "}
             {patient.pregnancyData?.gestationStage
-              ? `${patient.pregnancyData?.gestationStage} semanas de embarazo`
+              ? t("patients.card.gestation-stage", {
+                  weeks: patient.pregnancyData.gestationStage,
+                })
               : "N/A"}
           </p>
         </div>
@@ -51,7 +54,9 @@ export default function PatientCard({
       >
         {role == "admin" && (
           <div className="flex gap-1.5">
-            <p className="text-[#8b8b8b] text-xs font-bold">Doctor: </p>
+            <p className="text-[#8b8b8b] text-xs font-bold">
+              {t("patients.card.doctor")}:
+            </p>
             <Tooltip title={doctor} placement="top">
               <p
                 className="
@@ -89,9 +94,10 @@ export default function PatientCard({
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           onConfirm={() => confirmDelete()}
-          title="Eliminar paciente"
-          message="¿Estás seguro que deseas eliminar este paciente? Esta acción no se
-            puede deshacer."
+          title={t("patients.modal-delete.title")}
+          message={t("patients.modal-delete.message", {
+            name: patient.personalData.name,
+          })}
         />
       </section>
     </article>

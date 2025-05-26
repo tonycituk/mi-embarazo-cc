@@ -10,6 +10,7 @@ import { AppointmentDetailsModel } from "@/src/models/AppointmentModel";
 import { DateTime } from "luxon";
 import { updateAppointmentDetails } from "@/src/services/citasService";
 import { useSnackbar } from "notistack";
+import { t } from "i18next";
 
 export default function PatientRecord({
   patient,
@@ -79,11 +80,11 @@ export default function PatientRecord({
 
   const tabs = [
     {
-      label: "Detalles",
+      label: t("patients.details-tab-title"),
       component: <DetailsTab value={tab} index={0} {...detailsTabProps} />,
     },
     {
-      label: "Control prenatal",
+      label: t("patients.prenatal-tab-title"),
       component: (
         <ControlPrenatalTab value={tab} index={1} {...controlPrenatalProps} />
       ),
@@ -114,7 +115,7 @@ export default function PatientRecord({
             }
           );
 
-          enqueueSnackbar("Detalles del paciente guardados correctamente", {
+          enqueueSnackbar(t("patients.update-success-message.snackbar"), {
             variant: "success",
           });
         }
@@ -132,14 +133,15 @@ export default function PatientRecord({
             }
           );
 
-          enqueueSnackbar("Detalles de la cita guardados correctamente", {
-            variant: "success",
-          });
+          enqueueSnackbar(
+            t("patients.appointment-update-error-message.snackbar"),
+            {
+              variant: "success",
+            }
+          );
         }
       } catch (error) {
-        console.error("Error saving patient details:", error);
-
-        enqueueSnackbar("Error al guardar los detalles del paciente", {
+        enqueueSnackbar(t("update-error-message.snackbar"), {
           variant: "error",
         });
       } finally {
@@ -161,7 +163,7 @@ export default function PatientRecord({
             onClick={() => setIsEditing(false)}
             disabled={isLoading || isPatientLoading}
           >
-            Cancelar
+            {t("btn-cancel")}
           </Button>
         )}
         <Button
@@ -170,7 +172,11 @@ export default function PatientRecord({
           color="secondary"
           disabled={isLoading || isPatientLoading}
         >
-          {isEditing ? (isLoading ? "Guardando..." : "Guardar") : "Editar"}
+          {isEditing
+            ? isLoading
+              ? t("saving-status")
+              : t("btn-save")
+            : t("btn-edit")}
         </Button>
       </div>
       <Tabs

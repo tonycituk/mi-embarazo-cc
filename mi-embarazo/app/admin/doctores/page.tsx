@@ -13,6 +13,7 @@ import {
 } from "@/src/services/adminDoctoresService";
 import { DoctorModel } from "@/src/models/DoctorModel";
 import { useSnackbar } from "notistack";
+import { t } from "i18next";
 
 export default function DoctoresPage() {
   const [doctors, setDoctors] = useState<DoctorModel[]>([]);
@@ -36,12 +37,14 @@ export default function DoctoresPage() {
         setFilteredDoctors(data);
 
         if (data.length === 0) {
-          enqueueSnackbar("No hay doctores disponibles", {
+          enqueueSnackbar(t("doctors.empty-doctors-message.snackbar"), {
             variant: "info",
           });
         }
       } catch (error) {
-        console.error("Error fetching doctors:", error);
+        enqueueSnackbar(t("doctors.error-doctors-message.snackbar"), {
+          variant: "error",
+        });
       } finally {
         setLoading(false);
       }
@@ -82,7 +85,7 @@ export default function DoctoresPage() {
           )
         );
 
-        enqueueSnackbar("Doctor actualizado correctamente", {
+        enqueueSnackbar(t("doctors.update-success-message.snackbar"), {
           variant: "success",
         });
       } else {
@@ -92,14 +95,12 @@ export default function DoctoresPage() {
         setDoctors((prevDoctors) => [...prevDoctors, createdDoctor]); // Actualizamos la lista completa
         setFilteredDoctors((prevFiltered) => [...prevFiltered, createdDoctor]); // Actualizamos la lista filtrada
 
-        enqueueSnackbar("Doctor creado correctamente", {
+        enqueueSnackbar(t("doctors.add-success-message.snackbar"), {
           variant: "success",
         });
       }
     } catch (error) {
-      console.error("Error guardando el doctor:", error);
-
-      enqueueSnackbar("Error al guardar el doctor", {
+      enqueueSnackbar(t("doctors.add-error-message.snackbar"), {
         variant: "error",
       });
     } finally {
@@ -127,13 +128,11 @@ export default function DoctoresPage() {
           prevFiltered.filter((doc) => doc.id !== doctorToDelete.id)
         );
 
-        enqueueSnackbar("Doctor eliminado correctamente", {
+        enqueueSnackbar(t("doctors.delete-success-message.snackbar"), {
           variant: "success",
         });
       } catch (error) {
-        console.error("Error eliminando el doctor:", error);
-
-        enqueueSnackbar("Error al eliminar el doctor", {
+        enqueueSnackbar(t("doctors.delete-error-message.snackbar"), {
           variant: "error",
         });
       } finally {
@@ -147,17 +146,17 @@ export default function DoctoresPage() {
   return (
     <main>
       <section className="flex justify-between items-center pb-2">
-        <h1 className="text-3xl font-bold">Doctores</h1>
+        <h1 className="text-3xl font-bold">{t("doctors.doctor-page-title")}</h1>
         <button
           className="bg-[--primary-color] text-white rounded-md p-2 px-8"
           onClick={handleNewDoctor}
         >
-          Nuevo doctor
+          {t("btn-new-doctor")}
         </button>
       </section>
       <Input
         name="search"
-        placeholder="Buscar doctor"
+        placeholder={t("doctors.search-placeholder")}
         type="search"
         value={searchTerm}
         onChange={handleSearchChange}
@@ -175,8 +174,10 @@ export default function DoctoresPage() {
       <DeleteModalDoctor
         isOpen={isDeleteModalOpen}
         onClose={() => setIsDeleteModalOpen(false)}
-        title="Eliminar doctor"
-        message={`¿Estás seguro que deseas eliminar a ${doctorToDelete?.name}? Esta acción no se puede deshacer.`}
+        title={t("doctors.modal-delete.title")}
+        message={t("doctors.modal-delete.message", {
+          name: doctorToDelete?.name,
+        })}
         onConfirm={confirmDeleteDoctor}
       />
 

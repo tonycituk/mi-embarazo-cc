@@ -1,4 +1,5 @@
 import { Modal } from "@mui/material";
+import { t } from "i18next";
 
 export default function DeleteModal({
   isOpen,
@@ -24,13 +25,13 @@ export default function DeleteModal({
               className="bg-[--primary-color] text-white rounded-md p-2 w-full"
               onClick={onConfirm}
             >
-              Eliminar
+              {t("btn-delete")}
             </button>
             <button
               className="bg-red-100 text-red-700 rounded-md p-2 w-full hover:bg-red-200"
               onClick={onClose}
             >
-              Cancelar
+              {t("btn-cancel")}
             </button>
           </div>
         </div>

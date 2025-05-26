@@ -14,6 +14,7 @@ import { AppointmentModel } from "@/src/models/AppointmentModel";
 import { getAllPatients } from "@/src/services/pacienteService";
 import { PatientModel } from "@/src/models/PatientModel";
 import { useSnackbar } from "notistack";
+import { useTranslation } from "react-i18next";
 
 export default function CitasPage({ role }: { role: "doctor" | "admin" }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -28,6 +29,7 @@ export default function CitasPage({ role }: { role: "doctor" | "admin" }) {
   );
   const [searchQuery, setSearchQuery] = useState<string>("");
   const { enqueueSnackbar } = useSnackbar();
+  const { t } = useTranslation();
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -40,14 +42,12 @@ export default function CitasPage({ role }: { role: "doctor" | "admin" }) {
       setAvailablePatients(patientsData);
 
       if (appointmentsData.length === 0) {
-        enqueueSnackbar("No hay citas disponibles", {
+        enqueueSnackbar(t("appointments.empty-appointments-message.snackbar"), {
           variant: "info",
         });
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
-
-      enqueueSnackbar("Error fetching data", {
+      enqueueSnackbar(t("appointments.error-appointments-message.snackbar"), {
         variant: "error",
       });
     } finally {
@@ -84,13 +84,11 @@ export default function CitasPage({ role }: { role: "doctor" | "admin" }) {
         prevAppointments.filter((a) => a._id !== selectedAppointment!._id)
       );
 
-      enqueueSnackbar("Cita eliminada correctamente", {
+      enqueueSnackbar(t("appointments.delete-success-message.snackbar"), {
         variant: "success",
       });
     } catch (error) {
-      console.error("Error deleting appointment:", error);
-
-      enqueueSnackbar("Error deleting appointment", {
+      enqueueSnackbar(t("appointments.delete-error-message.snackbar"), {
         variant: "error",
       });
     } finally {
@@ -117,17 +115,19 @@ export default function CitasPage({ role }: { role: "doctor" | "admin" }) {
   return (
     <main>
       <section className="flex justify-between items-center pb-2">
-        <h1 className="text-3xl font-bold">Citas</h1>
+        <h1 className="text-3xl font-bold">
+          {t("appointments.appointment-page-title")}
+        </h1>
         <button
           className="bg-[--primary-color] text-white rounded-md p-2 px-8"
           onClick={handleNewAppointment}
         >
-          Nueva cita
+          {t("btn-new-appointment")}
         </button>
       </section>
       <Input
         name="search"
-        placeholder="Buscar cita"
+        placeholder={t("appointments.search-placeholder")}
         type="search"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
@@ -144,8 +144,8 @@ export default function CitasPage({ role }: { role: "doctor" | "admin" }) {
       <DeleteModal
         isOpen={isDeleteModalOpen}
         onClose={() => setIsDeleteModalOpen(false)}
-        title="Eliminar cita"
-        message="¿Estás seguro que deseas eliminar esta cita? Esta acción no se puede deshacer."
+        title={t("appointments.modal-delete.title")}
+        message={t("appointments.modal-delete.message")}
         onConfirm={() => {
           confirmDeleteAppointment();
         }}

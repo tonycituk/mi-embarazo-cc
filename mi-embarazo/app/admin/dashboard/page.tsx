@@ -10,8 +10,9 @@ import {
   GroupRounded,
 } from "@mui/icons-material";
 import { Skeleton } from "@mui/material";
+import { useTranslation, withTranslation } from "react-i18next";
 
-export default function DashboardPage() {
+function DashboardPage() {
   const [name, setName] = useState("");
   const [isLoadingCounts, setIsLoadingCounts] = useState(true);
   const [counts, setCounts] = useState({
@@ -19,6 +20,7 @@ export default function DashboardPage() {
     patients: 0,
     appointments: 0,
   });
+  const { t } = useTranslation();
 
   const loadCounts = async () => {
     try {
@@ -38,9 +40,11 @@ export default function DashboardPage() {
 
   return (
     <main>
-      <h1 className="text-3xl font-bold">Bienvenido/a {name},</h1>
+      <h1 className="text-3xl font-bold">
+        {t("doctors.dashboard-welcome-title")} {name},
+      </h1>
       <p className="text-gray-400 font-light pt-1">
-        Revisa la información general sobre el paciente y las próximas citas.
+        {t("doctors.dashboard-welcome-subtitle")}
       </p>
       <section className="flex gap-4 my-6">
         {isLoadingCounts ? (
@@ -54,7 +58,9 @@ export default function DashboardPage() {
             <Card className="flex-1 py-10">
               <div className="flex justify-between items-center">
                 <div>
-                  <small className="font-semibold">Doctores</small>
+                  <small className="font-semibold">
+                    {t("doctors.dashboard-doctors-title")}
+                  </small>
                   <h2 className="text-5xl font-bold text-black">
                     {counts.doctors}
                   </h2>
@@ -66,7 +72,9 @@ export default function DashboardPage() {
               <Card className="flex-1 py-10">
                 <div className="flex justify-between items-center">
                   <div>
-                    <small className="font-semibold">Pacientes</small>
+                    <small className="font-semibold">
+                      {t("doctors.dashboard-patients-title")}
+                    </small>
                     <h2 className="text-5xl font-bold text-black">
                       {counts.patients}
                     </h2>
@@ -77,7 +85,9 @@ export default function DashboardPage() {
               <Card className="flex-1 py-10">
                 <div className="flex justify-between items-center">
                   <div>
-                    <small className="font-semibold">Citas</small>
+                    <small className="font-semibold">
+                      {t("doctors.dashboard-appointments-title")}
+                    </small>
                     <h2 className="text-5xl font-bold text-black">
                       {counts.appointments}
                     </h2>
@@ -93,3 +103,5 @@ export default function DashboardPage() {
     </main>
   );
 }
+
+export default withTranslation()(DashboardPage);
