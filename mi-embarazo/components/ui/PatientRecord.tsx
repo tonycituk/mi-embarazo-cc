@@ -137,9 +137,56 @@ export default function PatientRecord({
     }
   };
 
+ const descargarExpedienteJSON = async (patientId: string) => {
+  const token = localStorage.getItem('accessToken'); // Cambiado a accessToken
+  if (!token) {
+    alert("Por favor inicia sesión");
+    return;
+  }
+
+  try {
+    const response = await fetch(`http://localhost:8000/patients/${patientId}/download`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+      if (!response.ok) throw new Error("Error al descargar el expediente");
+      
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `expediente-${patientId}.json`;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Error al descargar:", error);
+      alert("No autorizado: Inicia sesión nuevamente");
+    }
+
+  };
+
+
+
   return (
     <div>
       <div className="flex gap-4 justify-end">
+{!isEditing && (
+  <Button
+    onClick={() => {
+      if (formData._id) { // Verifica que _id existe
+        descargarExpedienteJSON(formData._id);
+      }
+    }}
+    variant="outlined"
+    color="primary"
+    disabled={isLoading || isPatientLoading || !formData._id}
+  >
+    Descargar expediente (JSON)
+  </Button>
+)}
         {isEditing && (
           <Button
             variant="outlined"
