@@ -33,13 +33,23 @@ export default function DoctorsModal({
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (onSave) {
-      onSave(formData);
-    }
-    onClose();
-  };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  const emailRegex = /^[\w.-]+@[\w.-]+\.\w{2,4}$/;
+
+  if (!emailRegex.test(formData.email)) {
+    alert("El correo no es válido. Ejemplo válido: doctor@hospital.com");
+    return;
+  }
+
+  if (onSave) {
+    onSave(formData);
+  }
+
+  onClose();
+};
+
 
   return (
     <Modal open={isOpen} onClose={onClose}>
