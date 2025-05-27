@@ -52,8 +52,8 @@ def signup_user(user: UserModel) -> BearerToken:
             user_name=user.name,
             role=user.role,
         )
-    except Exception:
+    except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
-            detail="This email address is already in use",
+            detail=str(e),
         )
